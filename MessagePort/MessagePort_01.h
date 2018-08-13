@@ -16,7 +16,7 @@ public:
     MessagePort_01(const MessagePort_01& ) = delete;
     MessagePort_01(MessagePort_01&& ) = delete;
     MessagePort_01 operator=(const MessagePort_01& ) = delete;
-    ~MessagePort_01() {}
+    ~MessagePort_01();
 
     void addMessage(const std::string sender, const Message msg) override;
     const Message& getLastMessage() const override;

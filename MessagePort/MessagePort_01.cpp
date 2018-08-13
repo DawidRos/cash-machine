@@ -7,6 +7,14 @@ void MessagePort_01::newMessage(const Message& msg) const
         x.second->newMessage(msg.order);
 }
 
+MessagePort_01::~MessagePort_01()
+{
+    for (auto& x : observerAddressList)
+    {
+        x.second->addWatched(nullptr);
+    }
+}
+
 void MessagePort_01::addMessage(const std::string sender, const Message msg)
 {
     messageList.push_back(std::make_pair<const std::string, const Message>(std::move(sender),std::move(msg)));
@@ -29,7 +37,7 @@ void MessagePort_01::subscribeObserver(std::shared_ptr<Observer> obs)
 {
     if (observerAddressList.insert(std::pair<const std::string,std::shared_ptr<Observer>>(obs->getName(),obs)).second == false)
         throw std::exception();
-    obs->
+    obs->addWatched(this);
 }
 
 void MessagePort_01::unsubscribeObserver (const std::string name)
@@ -37,6 +45,7 @@ void MessagePort_01::unsubscribeObserver (const std::string name)
     auto pt = observerAddressList.find(name);
     if (pt == observerAddressList.end())
         throw std::exception();
+    //pt->second->addWatched(nullptr);
     observerAddressList.erase(name);
 }
 

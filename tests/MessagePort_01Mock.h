@@ -11,6 +11,7 @@ public:
     void subscribeMember (std::shared_ptr<Member>) override {}
     void unsubscribeMember(std::string) override {}
     void newMessage(ORDER o) const override {}
+    ~ObserverMock() {}
 };
 
 

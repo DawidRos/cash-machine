@@ -19,7 +19,7 @@ public:
     virtual const Message& getLastMessage() const = 0;
     virtual  message_list getHistory() const = 0;
     virtual void subscribeObserver(std::shared_ptr<Observer> obs) = 0;
-    virtual void unsubscribeObserver (const std::string name) = 0;
+    virtual void unsubscribeObserver(const std::string name) = 0;
     virtual unsigned countObserver() const = 0;
 private:
     virtual void newMessage(const Message& msg) const = 0;
